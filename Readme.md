@@ -5,10 +5,10 @@
 まだ実験段階です。
 
 ## 3gram.txtの生成
-  $ python make3gram.py (source text) > 3gram.txt
+  $ python make3gram.py (source text) 
 
 ## n-list.txtの生成
-　$ python make_n_list.py (source text) > n_list.txt
+　$ python make_n_list.py (source text) 
 
 ## 3gram.txtから文章を生成する方法
   $ python generate_fm3.py
