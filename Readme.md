@@ -4,6 +4,14 @@
 通称 Pipi（ぴぴたん）
 まだ実験段階です。
 
+## 動作環境
+python 3.4以上
+meCab インストール環境
+
+# 開発環境
+ubuntu 16.04LTS + anaconda 3.5.1
+python3.5
+
 ## 3gram.txtの生成
   $ python make3gram.py (source text) 
 
