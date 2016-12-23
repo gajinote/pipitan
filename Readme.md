@@ -24,6 +24,12 @@ python3.5
 ## n_list.txtから文章を生成する方法
   $ python generate_fm_hm.py
 
+## **.txtから文章の品詞構成をリスト化する方法
+　$ python create_grammer_list.py **.txt
+
+##  **.txtに含まれる文章から単語をMeCabリスト形式に出力
+  $ python create_mecab_data.py **.txt
+
 ## 人口無能ぴーぴとの会話
 　$ python pipi_if.py
 
