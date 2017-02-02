@@ -38,7 +38,7 @@ if __name__ == "__main__":
       if match0:
         lst_size=len(i)
         word = random.randrange(lst_size+1)
-        print(myname + " :" + i[1][word])
+        print(myname + " :" + i[1][word].strip())
     print("あなた :", end="")
     input_line1 = input()
   print(myname + ": バイバーイ")
