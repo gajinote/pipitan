@@ -61,14 +61,14 @@ def create_resp(input_l, ngram):
   output=mecab.parse(input_l)
 
   # print(output)
-  list=output.split()
+  lists=output.split()
   
-  lst_size=len(list)
+  lst_size=len(lists)
   word = random.randrange(lst_size)
-  return generate_sentence(list[word], ngram)
+  return generate_sentence(lists[word], ngram)
 
 if __name__ == "__main__":
-  prog_version="0.01"
+  prog_version="0.02"
   print("ぴぴたん Version: " + prog_version + " Start!!")
   # 乱数の初期化
   rnd = random.seed()
