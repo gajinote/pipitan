@@ -29,15 +29,15 @@ if __name__ == "__main__":
   num=0
 
   res_len=len(resp_list)
-  myname="テストたん"
+  myname="ぴぴたん"
   print("あなた :", end="")
   input_line1 = input()
   while (input_line1 is not ""):
     for i in resp_list:
       match0=re.search(input_line1, i[0])
       if match0:
-        lst_size=len(i)
-        word = random.randrange(lst_size+1)
+        lst_size=len(i[1])
+        word = random.randrange(lst_size)
         print(myname + " :" + i[1][word].strip())
     print("あなた :", end="")
     input_line1 = input()
