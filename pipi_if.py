@@ -3,6 +3,7 @@ import sys
 import random
 import MeCab
 import codecs
+import re
 
 # 3-gram ファイルの読み込み
 def read3gram(source):
@@ -55,14 +56,38 @@ def generate_sentence(inp, ngram):
     top_char = out_str[-1]
   return prn_string
 
+# Response_listを読みだす
+def get_source2list():
+  n=0
+  res_lst=[]
+  i=[]
+  f = codecs.open("resp_list.txt", "r", "utf-8")
+  for i in f:
+    tmp_lst=[]
+    tmp = i.split(",")
+    tmp_lst.append(tmp[0])
+    tmp_lst.append(tmp[1:])
+    res_lst.append(tmp_lst)
+  f.close()
+  return res_lst
+
 # 応答の作成
-def create_resp(input_l, ngram):
+def create_resp(input_l, ngram, resp_l):
   mecab=MeCab.Tagger("-Owakati")
   output=mecab.parse(input_l)
 
   # print(output)
   lists=output.split()
   
+  # resp_l内の単語が一致したら応答を返す
+  for i_l in lists:
+     for r_l in resp_l:
+       match0=re.search(i_l, r_l[0])
+       if match0:
+        lst_size=len(r_l[1])
+        word = random.randrange(lst_size)
+        return r_l[1][word].strip()
+    
   lst_size=len(lists)
   word = random.randrange(lst_size)
   return generate_sentence(lists[word], ngram)
@@ -77,13 +102,17 @@ if __name__ == "__main__":
   source = read3gram(source)
   ngram = source.split("\n")
 
+  # response listの読み込み
+  resp_list=[]
+  resp_list=get_source2list()
+
   myname="ぴぴたん"
   print( myname + ":メッセージをどうぞ")
   print("あなた :", end="")
 
   input_line1 = input()
   while (input_line1 is not ""):
-    response = create_resp(input_line1, ngram)
+    response = create_resp(input_line1, ngram, resp_list)
     print( myname + ":" + str(response) )
     print("あなた :", end="")
     input_line1 = input()

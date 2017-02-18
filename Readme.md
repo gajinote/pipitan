@@ -43,3 +43,7 @@ python3.5
 # Version Information
 2016-08-28 :version 0.01
   初期バージョン公開
+
+2017-02-18 :version 0.01
+  resp_list.txtに記述されたルールに従い、指定された単語に反応を返す機能を追加
+  単語辞書n_list.txtの単語数を追加
