@@ -4,7 +4,7 @@ import random
 
 # 3-gramのファイル読み込み
 def read3gram(source):
-  f = open("n_list.txt", "r")
+  f = open("../dic/n_list.txt", "r")
   n = 0
   for cnt in f:
     source += cnt
