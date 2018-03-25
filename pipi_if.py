@@ -20,7 +20,10 @@ def create_aggregation(top, source):
   for i in source:
     tmp=len(i)
     if i.startswith(top) != False :
-      aggregate.append(i[0:tmp])
+      print(i[0:tmp])
+      tmp_l=i[0:tmp].split(" ")
+      tmp_m=tmp_l[0].split(":")
+      aggregate.append(tmp_m)
   return aggregate
 
 # 文字列の生成
@@ -49,7 +52,7 @@ def generate_sentence(inp, ngram):
       top_char ="メール"
       continue
     word = random.randrange(size_ng)
-    out_str=extr_str[word].split(" ")
+    out_str=extr_str[word]
     prn_string = prn_string + out_str[1]
 
     i += 1
@@ -73,24 +76,29 @@ def get_source2list():
 
 # 応答の作成
 def create_resp(input_l, ngram, resp_l):
-  mecab=MeCab.Tagger("-Owakati")
+  mecab=MeCab.Tagger()
   output=mecab.parse(input_l)
 
   # print(output)
-  lists=output.split()
+  # lists=output
   
   # resp_l内の単語が一致したら応答を返す
-  for i_l in lists:
-     for r_l in resp_l:
-       match0=re.search(i_l, r_l[0])
-       if match0:
-        lst_size=len(r_l[1])
-        word = random.randrange(lst_size)
-        return r_l[1][word].strip()
-    
-  lst_size=len(lists)
-  word = random.randrange(lst_size)
-  return generate_sentence(lists[word], ngram)
+  # for i_l in lists:
+  #    for r_l in resp_l:
+  #      match0=re.search(i_l, r_l[0])
+  #      if match0:
+  #       lst_size=len(r_l[1])
+  #       word = random.randrange(lst_size)
+  #       return r_l[1][word].strip()
+  
+  lists = output.split()
+  tmp_l=""
+  tmp_l = lists[0]
+  # lst_size=len(lists)
+  # word = random.randrange(lst_size)
+  # tmp_l = lists[word].split(":")
+  return tmp_l
+  # return generate_sentence(lists[word], ngram)
 
 if __name__ == "__main__":
   prog_version="0.02"
