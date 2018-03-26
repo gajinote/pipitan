@@ -10,7 +10,7 @@ def get_source2list(src):
   res_list=[]
   tmp_list=[]
   i = []
-  f = codecs.open("resp_list.txt", "r", "utf-8")
+  f = codecs.open("./dic/resp_list.txt", "r", "utf-8")
   for i in f:
     tmp_list=[]
     tmp = i.split(",")
@@ -23,7 +23,7 @@ def get_source2list(src):
 
 if __name__ == "__main__":
   resp_list=[]
-  filename = "resp_list.txt"
+  filename = "./dic/resp_list.txt"
   resp_list=get_source2list(filename)
 
   num=0

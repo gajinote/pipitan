@@ -7,7 +7,7 @@ import re
 
 # 3-gram ファイルの読み込み
 def read3gram(source):
-  f = codecs.open("n_list.txt", "r", "utf-8")
+  f = codecs.open("./dic/n_list.txt", "r", "utf-8")
   for cnt in f:
     source += cnt
   f.close()
@@ -64,7 +64,7 @@ def get_source2list():
   n=0
   res_lst=[]
   i=[]
-  f = codecs.open("resp_list.txt", "r", "utf-8")
+  f = codecs.open("./dic/resp_list.txt", "r", "utf-8")
   for i in f:
     tmp_lst=[]
     tmp = i.split(",")

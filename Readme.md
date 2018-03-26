@@ -12,6 +12,21 @@ meCab インストール環境
 ubuntu 16.04LTS + anaconda 3.5.1
 python3.5
 
+# Directory構成
+
+-------------------------------------
+
+/dic ・・・ 辞書用テキストファイル保存ディレクトリ
+
+/sample_tools ・・・ サンプルプログラム集
+
+pipi_if.py ... Prototype ぴぴたん
+
+resp_if.py ... 応答確認スクリプト
+
+-------------------------------------
+
+
 ## 3gram.txtの生成
   $ python make3gram.py (source text) 
 
@@ -47,3 +62,5 @@ python3.5
 2017-02-18 :version 0.02
   resp_list.txtに記述されたルールに従い、指定された単語に反応を返す機能を追加
   単語辞書n_list.txtの単語数を追加
+
+2018-02-18 :Directory構成のみ変更
