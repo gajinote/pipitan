@@ -11,15 +11,12 @@ class PipitanBase:
     self.emotion = status
     self.source=[]
     self.source=self.read_nlist()
-    # self.n_list=self.source.split("\n")
-    # print(self.source)
 
   def read_nlist(self):
     f = codecs.open("./dic/n_list.txt", "r", "utf-8")
     source=[]
     for cnt in f:
       source.append(str(cnt))
-      # print(str(cnt))
     f.close()
     return source
 
@@ -36,6 +33,18 @@ class PipitanBase:
 
   def create_response(self):
     self.out_s = "test"
+    tmp_list=[]
+    mecab=MeCab.Tagger()
+    temp_s = mecab.parse(self.input_s)
+    temp_list=temp_s.split("\n")
+    for row in temp_list:
+      out_list=row.split()
+      if len(out_list) > 1:
+        mecab_k = out_list
+        mecab_b = mecab_k[1].split(",")
+        if mecab_b[0] == "動詞" or mecab_b[0] == "名詞" or mecab_b[0] == "感動詞":
+          tmp_list.append(mecab_k[0])
+    self.out_s = str(tmp_list)
     self.write_log(self.my_name, self.out_s)
     return self.out_s
 
