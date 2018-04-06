@@ -22,7 +22,7 @@ class PipitanBase:
 
 
   def write_log(self, name, words):
-    fout = codecs.open("log.csv", "a", "utf-8")
+    fout = codecs.open("./log/log.csv", "a", "utf-8")
     fout.write(name + "," + words + "\n")
     fout.close
 
@@ -35,9 +35,8 @@ class PipitanBase:
     self.out_s = "test"
     tmp_list=[]
     mecab=MeCab.Tagger()
-    temp_s = mecab.parse(self.input_s)
-    temp_list=temp_s.split("\n")
-    for row in temp_list:
+    temp_s = mecab.parse(self.input_s).split("\n")
+    for row in temp_s:
       out_list=row.split()
       if len(out_list) > 1:
         mecab_k = out_list
