@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import sys
 import codecs
+import random
 import MeCab
 
 class PipitanBase:
@@ -16,7 +17,7 @@ class PipitanBase:
     f = codecs.open("./dic/n_list.txt", "r", "utf-8")
     source=[]
     for cnt in f:
-      source.append(str(cnt))
+      source.append(str(cnt.replace("\n","")))
     f.close()
     return source
 
@@ -31,6 +32,29 @@ class PipitanBase:
     self.input_s=in_s
     self.write_log(self.in_who, self.input_s)
 
+  # 文章の生成
+  def generate_sentence(self, t_list):
+    output_str=""
+    next_list=[]
+    size_nl=len(self.source)
+    word = random.randrange(size_nl-1)
+
+    cnt=0
+    while cnt < 30: 
+      for s_list in self.source:
+        if s_list.startswith(t_list) == True:
+          next_list.append(s_list)
+      if len(next_list) > 0:
+        pick=random.randrange(len(next_list))
+        # print(str(next_list[pick]))
+        t_list=next_list[pick].split()[1]
+      else:
+        t_list="メール"
+      output_str+=t_list
+      next_list=[]
+      cnt += 1
+    return output_str
+
   def create_response(self):
     self.out_s = "test"
     tmp_list=[]
@@ -43,7 +67,13 @@ class PipitanBase:
         mecab_b = mecab_k[1].split(",")
         if mecab_b[0] == "動詞" or mecab_b[0] == "名詞" or mecab_b[0] == "感動詞":
           tmp_list.append(mecab_k[0])
-    self.out_s = str(tmp_list)
+    # キーワードの抽出
+    word=random.randrange(len(tmp_list))
+
+    self.out_s = str(tmp_list) + str(word)
+    # print("tmp out = " + str(self.out_s), tmp_list[word]) 
+    self.out_s = self.generate_sentence(tmp_list[word])
+
     self.write_log(self.my_name, self.out_s)
     return self.out_s
 
