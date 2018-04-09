@@ -34,13 +34,13 @@ class PipitanBase:
 
   # 文章の生成
   def generate_sentence(self, t_list):
-    output_str=""
+    output_str=t_list.split()[0]
     next_list=[]
     size_nl=len(self.source)
     word = random.randrange(size_nl-1)
 
     cnt=0
-    while cnt < 30: 
+    while cnt < 50: 
       for s_list in self.source:
         if s_list.startswith(t_list) == True:
           next_list.append(s_list)
@@ -51,6 +51,8 @@ class PipitanBase:
       else:
         t_list="メール"
       output_str+=t_list
+      if t_list == "。" or t_list == "．":
+        break
       next_list=[]
       cnt += 1
     return output_str
@@ -68,9 +70,13 @@ class PipitanBase:
         if mecab_b[0] == "動詞" or mecab_b[0] == "名詞" or mecab_b[0] == "感動詞":
           tmp_list.append(mecab_k[0])
     # キーワードの抽出
-    word=random.randrange(len(tmp_list))
+    if len(tmp_list) > 0:
+      word=random.randrange(len(tmp_list))
+    else:
+      tmp_list.append("何のこと？")
+      word=0
 
-    self.out_s = str(tmp_list) + str(word)
+    # self.out_s = str(tmp_list) + str(word)
     # print("tmp out = " + str(self.out_s), tmp_list[word]) 
     self.out_s = self.generate_sentence(tmp_list[word])
 
